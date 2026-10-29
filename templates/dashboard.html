@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Misión Eco-Reto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <h3>Misión Eco-Reto</h3>
+            <a href="/dashboard">🏠 Inicio</a>
+            <a href="/nueva">➕ Nueva acción</a>
+            <a href="/logout">🚪 Cerrar sesión</a>
+        </aside>
+        <main class="main-content">
+            <h2>¡Bienvenido, {{ session.usuario }}!</h2>
+            <div class="kpi-box">
+                <div>Acciones: <strong>{{ total }}</strong></div>
+                <div>Agua ahorrada: <strong>{{ agua }} L</strong></div>
+                <div>Reciclaje: <strong>{{ reciclaje }} kg</strong></div>
+                <div>CO₂ evitado: <strong>{{ co2 }} kg</strong></div>
+            </div>
+            <table>
+                <tr><th>ID</th><th>Fecha</th><th>Tipo</th><th>Descripción</th><th>Impacto</th><th>Acciones</th></tr>
+                {% for a in acciones %}
+                <tr>
+                    <td>{{ a.id }}</td>
+                    <td>{{ a.fecha }}</td>
+                    <td>{{ a.tipo }}</td>
+                    <td>{{ a.descripcion }}</td>
+                    <td>{{ a.impacto }} {{ a.unidad }}</td>
+                    <td><a href="/eliminar/{{ a.id }}" class="btn-del">🗑️</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </main>
+    </div>
+</body>
+</html>

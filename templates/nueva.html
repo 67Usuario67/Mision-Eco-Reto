@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Acción</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="form-body">
+    <div class="form-card">
+        <h2>Registrar Acción Ecológica</h2>
+        <form action="/nueva" method="POST">
+            <label>Tipo de acción:</label>
+            <select name="tipo">
+                <option value="Reciclaje">Reciclaje</option>
+                <option value="Ahorro de agua">Ahorro de agua</option>
+                <option value="Transporte">Transporte limpio</option>
+                <option value="Energía">Ahorro de energía</option>
+            </select>
+            <label>Descripción:</label>
+            <input type="text" name="descripcion" required>
+            <label>Fecha:</label>
+            <input type="date" name="fecha" required>
+            <label>Impacto (número):</label>
+            <input type="number" step="0.1" name="impacto" required>
+            <label>Unidad:</label>
+            <select name="unidad">
+                <option value="kg">kg</option>
+                <option value="litros">litros</option>
+                <option value="kWh">kWh</option>
+            </select>
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="/dashboard" class="btn btn-cancel">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>
